@@ -1,4 +1,9 @@
 # TAXI POOLING - JAVA SPRING BOOT
+---
+author: Christian Barquilla Gómez<br>
+status: On going.<br>
+tags: Java, SpringBoot, Rest API, taxi-pooling
+---
 ## Introduction
 This application implements a **taxi pooling system in Java using Spring Boot through a Rest API**.<br>
 People organized in groups request taxis in order to travel to wherever they want. Each taxi has a specific cost per km and can accommodate as many people as available seats are available.<br>
