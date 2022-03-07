@@ -2,14 +2,12 @@ package com.challenge.taxi.pooling.model;
 
 import org.hibernate.validator.constraints.Range;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Journey {
-    private @Id @GeneratedValue Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private @Id Long id;
     private long taxiId;
     @Column(unique = true)
     private long groupId;

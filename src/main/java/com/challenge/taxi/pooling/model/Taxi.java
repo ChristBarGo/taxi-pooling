@@ -3,12 +3,13 @@ package com.challenge.taxi.pooling.model;
 import org.hibernate.validator.constraints.Range;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
 @Entity
 public class Taxi {
-
     @NotNull(message =  "Taxi id is mandatory")
     private @Id long id;
     @Range(min = 4, max = 6)

@@ -20,13 +20,13 @@ public class TaxiPoolingController {
     @Autowired
     private TaxiPoolingService taxiPoolingService;
 
-    @GetMapping("/status")
+    @GetMapping("/api/status")
     public ResponseEntity getStatus() {
         return ResponseEntity.ok("Server is running");
     }
 
     @PutMapping(
-            path = "/taxis",
+            path = "/api/taxis",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity replaceTaxiList(@Valid @RequestBody List<Taxi> taxiList) {
         taxiPoolingService.replaceTaxiList(taxiList);
@@ -35,7 +35,7 @@ public class TaxiPoolingController {
     }
 
     @GetMapping(
-            path = "/taxis",
+            path = "/api/taxis",
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getTaxis() {
         try {
@@ -48,7 +48,7 @@ public class TaxiPoolingController {
 
 
     @PostMapping(
-            path = "/journey",
+            path = "/api/journey",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity requestJourney(@Valid @RequestBody Group group) {
         try {
@@ -62,7 +62,7 @@ public class TaxiPoolingController {
     }
 
     @PostMapping(
-            path = "/dropoff",
+            path = "/api/dropoff",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public ResponseEntity requestDropOff(@RequestParam long ID) {
         try {
@@ -79,7 +79,7 @@ public class TaxiPoolingController {
     }
 
     @PostMapping(
-            path = "/locate",
+            path = "/api/locate",
             consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity locateGroup(@RequestParam long ID) {

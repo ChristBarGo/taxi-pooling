@@ -35,8 +35,8 @@ public class TaxiPoolingService implements TaxiPoolingServiceI {
 
     @Override
     public void clearRepositoriesAndQueue() {
-        taxiRepository.deleteAll();
-        journeyRepository.deleteAll();
+        taxiRepository.deleteAllInBatch();
+        journeyRepository.deleteAllInBatch();
         waitingGroupsQueue.clear();
     }
 

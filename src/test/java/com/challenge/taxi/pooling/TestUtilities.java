@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class TestUtilities {
     protected static String mapObjectToJson(Object object) throws JsonProcessingException {
@@ -32,6 +33,6 @@ public class TestUtilities {
     }
 
     protected static int getRandomNumberBetweenRange(int min, int max) {
-        return (int) (Math.random() * (max - min)) + min;
+        return ThreadLocalRandom.current().nextInt(min, max + 1);
     }
 }

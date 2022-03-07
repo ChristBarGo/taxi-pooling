@@ -2,6 +2,8 @@ package com.challenge.taxi.pooling.model;
 
 import org.hibernate.validator.constraints.Range;
 
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
