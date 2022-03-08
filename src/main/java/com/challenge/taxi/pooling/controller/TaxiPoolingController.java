@@ -25,11 +25,11 @@ public class TaxiPoolingController {
         return ResponseEntity.ok("Server is running");
     }
 
-    @PutMapping(
+    @PostMapping(
             path = "/api/taxis",
             consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity replaceTaxiList(@Valid @RequestBody List<Taxi> taxiList) {
-        taxiPoolingService.replaceTaxiList(taxiList);
+    public ResponseEntity saveTaxiList(@Valid @RequestBody List<Taxi> taxiList) {
+        taxiPoolingService.saveTaxiList(taxiList);
 
         return ResponseEntity.ok(null);
     }
@@ -45,7 +45,6 @@ public class TaxiPoolingController {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No taxi found");
         }
     }
-
 
     @PostMapping(
             path = "/api/journey",

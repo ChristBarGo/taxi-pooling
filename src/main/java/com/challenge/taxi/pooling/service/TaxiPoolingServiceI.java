@@ -7,7 +7,7 @@ import com.challenge.taxi.pooling.model.Taxi;
 import java.util.List;
 
 public interface TaxiPoolingServiceI {
-    void replaceTaxiList(List<Taxi> taxiList);
+    void saveTaxiList(List<Taxi> taxiList);
     List<Taxi> getTaxiList();
     void clearRepositoriesAndQueue();
     void insertTaxiListToRepository(List<Taxi> taxiList);

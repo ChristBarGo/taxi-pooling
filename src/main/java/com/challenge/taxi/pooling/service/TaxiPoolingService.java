@@ -19,7 +19,7 @@ public class TaxiPoolingService implements TaxiPoolingServiceI {
     private JourneyRepository journeyRepository;
     private Queue<Group> waitingGroupsQueue = new LinkedList<>();
 
-    public void replaceTaxiList(List<Taxi> taxiList) {
+    public void saveTaxiList(List<Taxi> taxiList) {
         if (taxiList.size() > 0) {
             clearRepositoriesAndQueue();
             this.insertTaxiListToRepository(taxiList);

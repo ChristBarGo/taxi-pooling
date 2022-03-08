@@ -48,8 +48,8 @@ Sample of 200 OK response:
 ]
     
 ```
-### PUT /api/taxis
-Allows to load either a list of taxis or just a single one. If any item of the list already exists, it will be updated.<br>
+### POST /api/taxis
+Allows to load a list of taxis. This list replaces all previous taxis.<br>
 
 **Content type:** _application/json_<br>
 **Body:** _mandatory_ A list of taxis to be loaded.

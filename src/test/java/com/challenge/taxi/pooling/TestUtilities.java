@@ -15,7 +15,7 @@ public class TestUtilities {
         return objectMapper.writeValueAsString(object);
     }
 
-    protected static <T> T mapFronJson(String json, Class<T> clazz) throws JsonProcessingException {
+    protected static <T> T mapFromJson(String json, Class<T> clazz) throws JsonProcessingException {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(json, clazz);
     }
