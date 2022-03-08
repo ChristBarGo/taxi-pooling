@@ -29,7 +29,7 @@ public class TaxiPoolingController {
             path = "/api/taxis",
             consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity saveTaxiList(@Valid @RequestBody List<Taxi> taxiList) {
-        taxiPoolingService.saveTaxiList(taxiList);
+        taxiPoolingService.saveTaxisToRepository(taxiList);
 
         return ResponseEntity.ok(null);
     }
@@ -39,11 +39,18 @@ public class TaxiPoolingController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity getTaxis() {
         try {
-            return ResponseEntity.ok(taxiPoolingService.getTaxiList());
+            return ResponseEntity.ok(taxiPoolingService.getTaxisFromRepository());
         }
         catch (Exception e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No taxi found");
         }
+    }
+
+    @DeleteMapping("/api/taxis")
+    public ResponseEntity deleteTaxis() {
+        taxiPoolingService.deleteTaxisFromRepository();
+
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).body("All taxis were deleted");
     }
 
     @PostMapping(

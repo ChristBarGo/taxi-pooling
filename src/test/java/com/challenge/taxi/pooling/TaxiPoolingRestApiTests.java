@@ -1,5 +1,6 @@
 package com.challenge.taxi.pooling;
 
+import com.challenge.taxi.pooling.model.Taxi;
 import com.challenge.taxi.pooling.service.TaxiPoolingService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,8 @@ import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.util.NestedServletException;
+
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasSize;
@@ -73,6 +76,22 @@ class TaxiPoolingRestApiTests {
 	}
 
 	@Test
+	public void whenDeleteTaxisRepositoryThatIsEmpty_Then404NotFoundIsReturned() throws Exception {
+		mockMvc.perform(delete(BASE_ENDPOINT_URL + TAXIS_ENDPOINT_URL))
+				.andExpect(status().isNoContent());
+	}
+
+	@Test
+	public void whenDeleteTaxisRepositoryThatIsNotEmpty_Then204NoContentIsReturned() throws Exception {
+		final int TAXIS_NUMBER = 20;
+
+		insertTaxisToRepository(TAXIS_NUMBER);
+
+		mockMvc.perform(delete(BASE_ENDPOINT_URL + TAXIS_ENDPOINT_URL))
+				.andExpect(status().isNoContent());
+	}
+
+	@Test
 	public void whenInsertATaxiThatAlreadyExists_ThenTheTaxiIsUpdated() throws Exception {
 		String taxiJson = TestUtilities.generateTaxiListJsonWithNElements(1);
 
@@ -109,6 +128,12 @@ class TaxiPoolingRestApiTests {
 						.accept(MediaType.APPLICATION_JSON))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$", hasSize(taxisNumber)));
+	}
+
+	private void insertTaxisToRepository(int taxisNumber) {
+		List<Taxi> taxiList = TestUtilities.generateTaxiListWithNElements(taxisNumber);
+
+		taxiPoolingService.saveTaxisToRepository(taxiList);
 	}
 
 }

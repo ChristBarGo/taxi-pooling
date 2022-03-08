@@ -77,10 +77,9 @@ Sample of request body:
 Clears the list of taxis.
 
 Responses:
-- **204 No Content** when the list of taxis is successfully deleted.
-- **404 Not Found** when the list is empty.
+- **204 No Content** when the list of taxis is successfully deleted or is empty.
 
-### PATCH /api/taxi/{taxi_Id}
+### PATCH /api/taxis/{taxi_Id}
 Updates an existing taxi properties.
 
 **Parameters:**
@@ -141,13 +140,13 @@ Returns the taxi where the group is traveling with or no taxi if they are still 
 Sample of 200 OK response:
 ```
   {
-  "id": 2,
-  "seats": 7,
-  "costPerKm": 5.5
+    "id": 2,
+    "seats": 7,
+    "costPerKm": 5.5
   }
 ```
 
-### DELETE /api/journeys
+### DELETE /api/journey
 Clears all the journeys in the system, including the ongoing ones.
 
 Responses:

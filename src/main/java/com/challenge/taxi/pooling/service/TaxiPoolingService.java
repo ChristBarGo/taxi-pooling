@@ -19,7 +19,7 @@ public class TaxiPoolingService implements TaxiPoolingServiceI {
     private JourneyRepository journeyRepository;
     private Queue<Group> waitingGroupsQueue = new LinkedList<>();
 
-    public void saveTaxiList(List<Taxi> taxiList) {
+    public void saveTaxisToRepository(List<Taxi> taxiList) {
         if (taxiList.size() > 0) {
             clearRepositoriesAndQueue();
             this.insertTaxiListToRepository(taxiList);
@@ -29,19 +29,24 @@ public class TaxiPoolingService implements TaxiPoolingServiceI {
         }
     }
 
-    public List<Taxi> getTaxiList() {
+    public List<Taxi> getTaxisFromRepository() {
         return taxiRepository.findAll();
     }
 
     @Override
     public void clearRepositoriesAndQueue() {
-        taxiRepository.deleteAllInBatch();
+        deleteTaxisFromRepository();
         journeyRepository.deleteAllInBatch();
         waitingGroupsQueue.clear();
     }
 
     public void insertTaxiListToRepository(List<Taxi> taxiList) {
         taxiRepository.saveAll(taxiList);
+    }
+
+    @Override
+    public void deleteTaxisFromRepository() {
+        taxiRepository.deleteAllInBatch();
     }
 
     @Override

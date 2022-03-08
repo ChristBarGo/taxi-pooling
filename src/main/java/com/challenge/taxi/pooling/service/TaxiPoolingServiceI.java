@@ -7,8 +7,8 @@ import com.challenge.taxi.pooling.model.Taxi;
 import java.util.List;
 
 public interface TaxiPoolingServiceI {
-    void saveTaxiList(List<Taxi> taxiList);
-    List<Taxi> getTaxiList();
+    void saveTaxisToRepository(List<Taxi> taxiList);
+    List<Taxi> getTaxisFromRepository();
     void clearRepositoriesAndQueue();
     void insertTaxiListToRepository(List<Taxi> taxiList);
     void addGroupToQueue(Group group);
@@ -16,4 +16,5 @@ public interface TaxiPoolingServiceI {
     Journey createJourneyForTaxiAndGroup(Taxi taxi, Group group);
     void requestDropoffByGroupId(long groupId);
     Taxi locateGroupByGroupId(long groupId) throws Exception;
+    void deleteTaxisFromRepository();
 }
